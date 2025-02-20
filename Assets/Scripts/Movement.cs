@@ -4,6 +4,13 @@ using UnityEngine.InputSystem;
 public class Movement : MonoBehaviour
 {
     [SerializeField] InputAction thrust;
+    [SerializeField] float thrustSpeed = 100f;
+    Rigidbody rb;
+
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
 
     private void OnEnable()
     {
@@ -11,11 +18,11 @@ public class Movement : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (thrust.IsPressed())
         {
-            Debug.Log("Tombol Ditekan");
+            rb.AddRelativeForce(Vector3.up * thrustSpeed * Time.fixedDeltaTime);
         }
     }
 }
