@@ -781,6 +781,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1750360764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1750360762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 880d38ad23e007845882d4a2644b89e0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2120262276
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -792,6 +804,10 @@ PrefabInstance:
     - target: {fileID: 68801158405693981, guid: c4783ae152ee6fd4e8836526b1957284, type: 3}
       propertyPath: m_Name
       value: Landing Pad
+      objectReference: {fileID: 0}
+    - target: {fileID: 68801158405693981, guid: c4783ae152ee6fd4e8836526b1957284, type: 3}
+      propertyPath: m_TagString
+      value: Finish
       objectReference: {fileID: 0}
     - target: {fileID: 846605147409250471, guid: c4783ae152ee6fd4e8836526b1957284, type: 3}
       propertyPath: m_LocalPosition.x
@@ -978,6 +994,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6702600053028647387, guid: 43e197c5c1ced9947a2858044fce8c92, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1750360763}
+    - targetCorrespondingSourceObject: {fileID: 6702600053028647387, guid: 43e197c5c1ced9947a2858044fce8c92, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1750360764}
   m_SourcePrefab: {fileID: 100100000, guid: 43e197c5c1ced9947a2858044fce8c92, type: 3}
 --- !u!1001 &4042853013602257004
 PrefabInstance:
@@ -990,6 +1009,10 @@ PrefabInstance:
     - target: {fileID: 68801158405693981, guid: c4783ae152ee6fd4e8836526b1957284, type: 3}
       propertyPath: m_Name
       value: Launch Pad
+      objectReference: {fileID: 0}
+    - target: {fileID: 68801158405693981, guid: c4783ae152ee6fd4e8836526b1957284, type: 3}
+      propertyPath: m_TagString
+      value: Friendly
       objectReference: {fileID: 0}
     - target: {fileID: 846605147409250471, guid: c4783ae152ee6fd4e8836526b1957284, type: 3}
       propertyPath: m_LocalPosition.x
