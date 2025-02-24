@@ -1,15 +1,17 @@
+using System;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CollisionEnter : MonoBehaviour
 {
+    [SerializeField] float levelLoadDelay = 1.0f;
     private void OnCollisionEnter(Collision collision)
     {
         switch(collision.gameObject.tag)
         {
             case "Finish":
-                LoadNextLevel();
+                StartFinishSequence();
                 break;
             case "Friendly":
                 Debug.Log("Friendly");
@@ -18,10 +20,21 @@ public class CollisionEnter : MonoBehaviour
                 Debug.Log("Fuel");
                 break;
             default:
-                Debug.Log("Crashed");
-                ReloadLevel();
+                StartCrashSequence();
                 break;
         }
+    }
+
+    private void StartFinishSequence()
+    {
+        Invoke("LoadNextLevel", levelLoadDelay);
+        Debug.Log("Selamat Anda Menang!");
+    }
+
+    private void StartCrashSequence()
+    {
+        GetComponent<Movement>().enabled = false;
+        Invoke("ReloadLevel", levelLoadDelay);
     }
 
     void LoadNextLevel()
