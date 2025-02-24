@@ -9,7 +9,7 @@ public class CollisionEnter : MonoBehaviour
         switch(collision.gameObject.tag)
         {
             case "Finish":
-                Debug.Log("Finish");
+                LoadNextLevel();
                 break;
             case "Friendly":
                 Debug.Log("Friendly");
@@ -21,6 +21,19 @@ public class CollisionEnter : MonoBehaviour
                 Debug.Log("Crashed");
                 ReloadLevel();
                 break;
+        }
+    }
+
+    void LoadNextLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        if (SceneManager.sceneCountInBuildSettings-1 != currentScene)
+        {
+            SceneManager.LoadScene(currentScene+1);
+        }
+        else
+        {
+            Debug.Log("Anda Menang");
         }
     }
 
