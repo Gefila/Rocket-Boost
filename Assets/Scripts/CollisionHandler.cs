@@ -10,6 +10,7 @@ public class CollisionEnter : MonoBehaviour
     [SerializeField] AudioClip crash;
 
     AudioSource audioSource;
+    bool isControllable = true;
 
     private void Start()
     {
@@ -18,6 +19,7 @@ public class CollisionEnter : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        if(!isControllable) { return; }
         switch(collision.gameObject.tag)
         {
 
@@ -37,6 +39,8 @@ public class CollisionEnter : MonoBehaviour
 
     private void StartFinishSequence()
     {
+        isControllable = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(success);
         GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
@@ -44,6 +48,8 @@ public class CollisionEnter : MonoBehaviour
 
     private void StartCrashSequence()
     {
+        isControllable = false;
+        audioSource.Stop();
         audioSource.PlayOneShot(crash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
