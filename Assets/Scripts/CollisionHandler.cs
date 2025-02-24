@@ -5,19 +5,29 @@ using UnityEngine.SceneManagement;
 
 public class CollisionEnter : MonoBehaviour
 {
-    [SerializeField] float levelLoadDelay = 1.0f;
+    [SerializeField] float levelLoadDelay = 2.0f;
+    [SerializeField] AudioClip success;
+    [SerializeField] AudioClip crash;
+
+    AudioSource audioSource;
+
+    private void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         switch(collision.gameObject.tag)
         {
-            case "Finish":
-                StartFinishSequence();
-                break;
+
             case "Friendly":
-                Debug.Log("Friendly");
                 break;
             case "Fuel":
                 Debug.Log("Fuel");
+                break;
+            case "Finish":
+                StartFinishSequence();
                 break;
             default:
                 StartCrashSequence();
@@ -27,12 +37,14 @@ public class CollisionEnter : MonoBehaviour
 
     private void StartFinishSequence()
     {
+        audioSource.PlayOneShot(success);
+        GetComponent<Movement>().enabled = false;
         Invoke("LoadNextLevel", levelLoadDelay);
-        Debug.Log("Selamat Anda Menang!");
     }
 
     private void StartCrashSequence()
     {
+        audioSource.PlayOneShot(crash);
         GetComponent<Movement>().enabled = false;
         Invoke("ReloadLevel", levelLoadDelay);
     }
