@@ -1,5 +1,6 @@
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionEnter : MonoBehaviour
 {
@@ -18,7 +19,14 @@ public class CollisionEnter : MonoBehaviour
                 break;
             default:
                 Debug.Log("Crashed");
+                ReloadLevel();
                 break;
         }
+    }
+
+    void ReloadLevel()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        SceneManager.LoadScene(currentScene);
     }
 }
