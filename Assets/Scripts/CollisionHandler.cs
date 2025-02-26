@@ -1,6 +1,7 @@
 using System;
 using Unity.Cinemachine;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class CollisionEnter : MonoBehaviour
@@ -13,15 +14,27 @@ public class CollisionEnter : MonoBehaviour
 
     AudioSource audioSource;
     bool isControllable = true;
+    bool isColliadble = true;
 
     private void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
+    private void Update()
+    {
+        if(Keyboard.current.lKey.wasPressedThisFrame)
+        {
+            LoadNextLevel();
+        }else if (Keyboard.current.cKey.wasPressedThisFrame)
+        {
+            isColliadble = !isColliadble;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        if(!isControllable) { return; }
+        if(!isControllable || !isColliadble) { return; }
         switch(collision.gameObject.tag)
         {
 
@@ -68,6 +81,7 @@ public class CollisionEnter : MonoBehaviour
         }
         else
         {
+            SceneManager.LoadScene(0);
             Debug.Log("Anda Menang");
         }
     }
